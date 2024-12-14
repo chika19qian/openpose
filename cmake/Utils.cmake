@@ -1,5 +1,5 @@
 # Function to download models
-function (download_model MODEL_NAME MODEL_DOWNLOAD_FLAG MODEL_RELATIVE_PATH CHECKSUM)
+function (download_model MODEL_NAME MODEL_DOWNLOAD_FLAG MODEL_RELATIVE_PATH)
   if (MODEL_DOWNLOAD_FLAG)
     message(STATUS "Downloading ${MODEL_NAME} model...")
     set(MODEL_FILENAME ${CMAKE_SOURCE_DIR}/models/${MODEL_RELATIVE_PATH})
@@ -16,12 +16,10 @@ function (download_model MODEL_NAME MODEL_DOWNLOAD_FLAG MODEL_RELATIVE_PATH CHEC
 endfunction (download_model)
 
 # Function to download zip files, then extracting them and then deleting them
-function(download_zip FILE_NAME URL DOWNLOAD_PATH CHECKSUM)
+function(download_zip FILE_NAME URL DOWNLOAD_PATH)
   set(FULL_FILE_PATH "${DOWNLOAD_PATH}/${FILE_NAME}")
   if (NOT EXISTS ${FULL_FILE_PATH})
     message(STATUS "Downloading ${URL}/${FILE_NAME}...")
-    file(DOWNLOAD "${URL}/${FILE_NAME}" "${DOWNLOAD_PATH}/${FILE_NAME}"
-        EXPECTED_MD5 ${CHECKSUM})
     message(STATUS "Extracting ${FULL_FILE_PATH}...")
     execute_process(COMMAND ${CMAKE_COMMAND} -E tar xf ${FILE_NAME} WORKING_DIRECTORY ${DOWNLOAD_PATH})
     else (NOT EXISTS ${FULL_FILE_PATH})
