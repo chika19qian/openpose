@@ -137,3 +137,11 @@ html/
 
 ######################### Validation Scripts & Testing #########################
 output*/
+
+# Ignore specific large DLL files
+bin/Spinnakerd_v140.dll
+bin/opencv_world420.dll
+bin/opencv_world420d.dll
+
+# Ignore all files in the bin directory (optional, if you want to ignore all bin files)
+bin/
